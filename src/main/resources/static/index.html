@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="App">
 
 
 
@@ -44,10 +44,19 @@
 
     <!--Magic Checkbox [ OPTIONAL ]-->
     <link href="plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
-    
-    
 
-    
+
+    <!--Ion Icons [ OPTIONAL ]-->
+    <link href="plugins/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+
+    <style>
+
+        .bg-default {
+          color: white;
+        }
+
+    </style>
 
 
 
@@ -96,12 +105,8 @@
     <script src="js/demo/dashboard.js"></script>
 
 
-    <script>
-        var elem = document.querySelector('.js-switch');
-        var init = new Switchery(elem);
-    </script>
+    <script src="js/angularApp.js"></script>
 
-    
     <!--=================================================
 
     REQUIRED
@@ -133,7 +138,7 @@
 
         <!--TIPS-->
         <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
-        <body>
+        <body ng-controller="MainController">
             <div id="container" class="effect aside-float aside-bright mainnav-lg">
 
                 
@@ -590,8 +595,14 @@
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                         <div id="page-title">
                             <h1 class="page-header text-overflow">Dashboard</h1>
-                            
-                            
+
+
+                            <!--Add new Device button-->
+                            <button class="btn btn-default btn-icon btn-circle" data-target="#demo-default-modal" data-toggle="modal">
+                                <i class="demo-pli-mail icon-3x"></i>
+                            </button>
+
+
 
                             <!--Searchbox-->
                             <div class="searchbox">
@@ -618,17 +629,16 @@
                                 <!--===================================================================-->
                                 <div class="col-md-8">
                                     
-                                    <div class=col-md-4>
-                                        <div class="panel media middle pad-all">
+                                    <div class=col-md-4 ng-repeat="device in devices">
+                                        <div id="device-{{device.id}}" class="panel media middle pad-all device"  ng-click="sendInstruction($event);">
                                             <div class="media-left">
                                                 <span class="icon-wrap icon-wrap-sm icon-circle bg-success">
-                                                <i class="demo-pli-male icon-2x"></i>
+                                                <i class="ion-lightbulb icon-2x"></i>
+
                                                 </span>
                                             </div>
-                                            <div class="media-body">
-                                                <p class="text-2x mar-no text-semibold">Erick</p>
-                                                <p class="text-muted mar-no">Cuarto de Erick</p>
-                                                <input type="checkbox" class="js-switch" checked />
+                                            <div class="media-body" style="padding-bottom: 7px;">
+                                                <p class="text-2x mar-no text-semibold">{{device.name}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1029,7 +1039,7 @@
                                             </div>
                                             <div id="profile-nav" class="collapse list-group bg-trans">
                                                 <a href="#" class="list-group-item">
-                                                    <i class="demo-pli-male icon-lg icon-fw"></i> View Profile
+                                                    <i class="demo-pli-male icon-lg icon-fw"></i> Agregar Dispositivo
                                                 </a>
                                                 <a href="#" class="list-group-item">
                                                     <i class="demo-pli-gear icon-lg icon-fw"></i> Settings
@@ -1905,6 +1915,34 @@
             </div>
             <!--===================================================-->
             <!-- END SETTINGS -->
+
+
+
+
+
+
+                    <div id="demo-default-modal" class="bootbox modal bootbox-confirm in">
+                        <div class="modal-dialog animated rubberBand">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal" style="margin-top: -10px;">
+                                        <i class="pci-cross pci-circle"></i></button>
+                                    <div class="bootbox-body"><p class="text-semibold text-main">RubberBand &amp;
+                                        Wobble</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
+                                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut
+                                            wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                            lobortis nisl ut aliquip ex ea commodo consequat.</p></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button data-bb-handler="cancel" type="button" class="btn btn-default">Cancel
+                                    </button>
+                                    <button data-bb-handler="confirm" type="button" class="btn btn-primary">Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
         </body>

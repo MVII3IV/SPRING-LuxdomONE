@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/device")
+@RequestMapping("rest/api/device")
 public class DeviceController {
 
     @Autowired
     DeviceRepository deviceRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public Iterable<Device> getAll(){
         return deviceRepository.findAll();
     }
